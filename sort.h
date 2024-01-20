@@ -12,14 +12,10 @@
  */
 typedef struct listint_s
 {
-    const int n;
-    struct listint_s *prev;
-    struct listint_s *next;
+const int n;
+struct listint_s *prev;
+struct listint_s *next;
 } listint_t;
-
-/** 
- * Prototypes
- */
 
 void bubble_sort(int *array, size_t size);
 void print_list(const listint_t *list);
