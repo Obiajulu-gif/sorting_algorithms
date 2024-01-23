@@ -1,60 +1,66 @@
 #include "sort.h"
 
-
 /**
- * merge_sort - Sort an array of integers in asending order using
+ * merge_sort - Sorts an array of integers in ascending order using
  *              the top-down Merge Sort algorithm.
- * @array: the array to be sorted.
- * @size: the size of the array
+ * @array: The array to be sorted.
+ * @size: The size of the array.
  */
 void merge_sort(int *array, size_t size)
 {
 int *temp;
+
 if (array == NULL || size < 2)
 return;
 
+/* Allocate temporary array for merging */
 temp = malloc(size * sizeof(int));
 if (temp == NULL)
 return;
+
+/* Call the recursive merge sort function */
 recursive_merge_sort(array, 0, size - 1, temp);
+
+/* Free the temporary array */
 free(temp);
 }
 
 /**
  * recursive_merge_sort - Recursively sorts an array using Merge Sort.
- * @array: the array to be sorted.
- * @left: the left index of the current sub-array.
- * @right: the right index of the current sub-array.
+ * @array: The array to be sorted.
+ * @left: The left index of the current sub-array.
+ * @right: The right index of the current sub-array.
  * @temp: Temporary array for merging.
  */
 void recursive_merge_sort(int *array, int left, int right, int *temp)
 {
 if (left < right)
 {
-int mid;
-mid = left + (right - left) / 2;
+int mid = left + (right - left) / 2;
 
+/* Recursively sort the left and right halves */
 recursive_merge_sort(array, left, mid, temp);
 recursive_merge_sort(array, mid + 1, right, temp);
 
+/* Merge the sorted halves */
 merge(array, left, mid, right, temp);
 }
 }
 
 /**
- * merge - Merge two sub-array into a single sorted array.
- * @array: the array containing the two sub-array.
- * @left: the left index of the first sub-array.
- * @mid: the right index of the first sub-array and the left index
- * of the second sub-array.
- * @right: the right index of the second sub-array.
- * @temp: Temporaray array for merging.
+ * merge - Merges two sub-arrays into a single sorted array.
+ * @array: The array containing the two sub-arrays.
+ * @left: The left index of the first sub-array.
+ * @mid: The right index of the first sub-array
+ *  and the left index of the second sub-array.
+ * @right: The right index of the second sub-array.
+ * @temp: Temporary array for merging.
  */
 void merge(int *array, int left, int mid, int right, int *temp)
 {
 int i = left, j = mid + 1, k = 0;
 
-printf("Merging..\n[left]: ");
+printf("Merging...\n[left]: ");
 print_array(array + left, mid - left + 1);
 printf("[right]: ");
 print_array(array + mid + 1, right - mid);
