@@ -33,5 +33,8 @@ void counting_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
 void merge(int *array, int left, int mid, int right, int *temp);
 void recursive_merge_sort(int *array, int left, int right, int *temp);
+void heap_sort(int *array, size_t size);
+void build_heap(int *array, size_t size);
+void heapify(int *array, size_t size, int i);
 
 #endif /* SORT_H */
