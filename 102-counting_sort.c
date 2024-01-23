@@ -1,19 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "sort.h"
 
-
 /**
- * counting_sort - algorithm for sortimg an array of integer
- * in ascending order 
- * @array: array of integer
- * @size: size of the integer 
+ * counting_sort - Sorts an array of integers in ascending order using
+ *                 Counting Sort algorithm.
+ * @array: The array to be sorted
+ * @size: The size of the array
  */
 void counting_sort(int *array, size_t size)
 {
     int max = array[0];
-    int *count, *output;
-    size_t i;
-    int x;
-
+    size_t i = 0;
+    int *count;
+    int x, j;
     if (array == NULL || size < 2)
         return;
 
@@ -33,25 +33,16 @@ void counting_sort(int *array, size_t size)
     for (i = 0; i < size; i++)
         count[array[i]]++;
 
-    for (x = 1; x <= max; x++)
-        count[x] += count[x - 1];
+    print_array(count, max + 1);
 
-    output = malloc(size * sizeof(int));
-    if (output == NULL)
+    for (j = 0; j <= max; j++)
     {
-        free(count);
-        return;
+        while (count[j] > 0)
+        {
+            array[i++] = j;
+            count[j]--;
+        }
     }
-
-    for (x = size - 1; x >= 0; x--)
-    {
-        output[count[array[x]] - 1] = array[x];
-        count[array[x]]--;
-    }
-
-    for (i = 0; i < size; i++)
-        array[i] = output[i];
 
     free(count);
-    free(output);
 }
