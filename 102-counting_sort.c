@@ -35,11 +35,12 @@ void counting_sort(int *array, size_t size)
 
     print_array(count, max + 1);
 
+    x = 0;
     for (j = 0; j <= max; j++)
     {
         while (count[j] > 0)
         {
-            array[i++] = j;
+            array[x++] = j;
             count[j]--;
         }
     }
